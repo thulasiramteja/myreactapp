@@ -16,7 +16,6 @@ const register = promClient.register;
 const collectDefaultMetrics = promClient.collectDefaultMetrics;
 collectDefaultMetrics(); // Collect default metrics like CPU usage, memory, etc.
 
-// Define a custom metric for HTTP requests
 const httpRequestsTotal = new promClient.Counter({
   name: 'http_requests_total',
   help: 'Total number of HTTP requests',
@@ -44,15 +43,14 @@ const sequelize = new Sequelize({
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  port: process.env.DB_PORT || 5432, // Default to 5432 if not provided
-  logging: false, // Disable Sequelize logging if not needed
+  port: process.env.DB_PORT || 5432,
+  logging: false,
 });
 
 sequelize.authenticate()
   .then(() => console.log('Database connected successfully'))
   .catch((err) => console.error('Failed to connect to the database:', err));
 
-// Sync models with the database (or you can choose to use migrations)
 sequelize.sync()
   .then(() => console.log('Database synced'))
   .catch((err) => console.error('Failed to sync DB:', err));
