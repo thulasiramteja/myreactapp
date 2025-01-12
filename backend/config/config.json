@@ -3,7 +3,7 @@
     "username": "myappuser",
     "password": "testing",
     "database": "myappdb",
-    "host": "localhost",
+    "host": "postgres.railway.internal",
     "dialect": "postgres"
   }
 }
