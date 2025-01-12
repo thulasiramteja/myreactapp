@@ -2,7 +2,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 
 // Correct the host definition to use the environment variable
 const sequelize = new Sequelize('myappdb', 'myappuser', 'testing', {
-  host: process.env.DB_HOST || 'postgres-service', // Don't wrap it in quotes
+  host: process.env.DB_HOST || 'postgres.railway.internal', // Don't wrap it in quotes
   dialect: 'postgres',
 });
 
