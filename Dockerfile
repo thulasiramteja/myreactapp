@@ -31,5 +31,5 @@ RUN npm run build
 # Expose the port
 EXPOSE 3000
 
-# Start both backend and frontend concurrently
+# Start both backend and frontend
 CMD ["sh", "-c", "npm start --prefix /app/backend & npx serve -s /app/frontend/build -l 3000"]
