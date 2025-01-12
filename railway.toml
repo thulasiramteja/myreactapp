@@ -1,11 +1,15 @@
-[build]
-# Install dependencies and build the backend
-backend = "cd backend && npm install && npm run build"
-# Install dependencies and build the frontend
-frontend = "cd frontend && npm install && npm run build"
+[build.frontend]
+# Build the frontend React app
+build = "cd frontend && npm install && npm run build"
 
-[start]
-# Start the backend server
-backend = "cd backend && npm start"
-# Start the frontend server using a production-ready static server
-frontend = "cd frontend && npx serve -s build -l 3000"
+[start.frontend]
+# Serve the React app in production
+start = "cd frontend && npx serve -s build -l 3000"
+
+[build.backend]
+# Build the backend Node.js server
+build = "cd backend && npm install"
+
+[start.backend]
+# Start the backend Node.js server
+start = "cd backend && nodemon server.js"
