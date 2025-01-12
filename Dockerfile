@@ -31,7 +31,9 @@ COPY .env /app/backend/.env
 WORKDIR /app/frontend
 RUN npm run build
 
-# Expose the port
+# Expose the port for the backend
+EXPOSE 5000
+# Expose the port for the frontend
 EXPOSE 3000
 
 # Start both backend and frontend
