@@ -24,8 +24,8 @@ WORKDIR /app
 COPY backend ./backend/
 COPY frontend ./frontend/
 
-# Copy the .env file
-COPY .env ./
+# Copy the .env file from the root of the repository
+COPY .env ./  # This assumes .env is at the root of your GitHub repository
 
 # Build the frontend
 WORKDIR /app/frontend
