@@ -1,0 +1,11 @@
+[build]
+# Build the backend
+backend = "cd backend && npm install && npm run build"
+# Build the frontend
+frontend = "cd frontend && npm install && npm run build"
+
+[start]
+# Start the backend server
+backend = "cd backend && npm start"
+# Serve the frontend
+frontend = "cd frontend && npx serve -s build -l 3000"
