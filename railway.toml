@@ -1,11 +1,11 @@
 [build]
-# Build the backend
+# Install dependencies and build the backend
 backend = "cd backend && npm install && npm run build"
-# Build the frontend
+# Install dependencies and build the frontend
 frontend = "cd frontend && npm install && npm run build"
 
 [start]
 # Start the backend server
 backend = "cd backend && npm start"
-# Serve the frontend
+# Start the frontend server using a production-ready static server
 frontend = "cd frontend && npx serve -s build -l 3000"
