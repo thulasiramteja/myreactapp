@@ -24,6 +24,9 @@ WORKDIR /app
 COPY backend ./backend/
 COPY frontend ./frontend/
 
+# Copy the .env file
+COPY .env ./
+
 # Build the frontend
 WORKDIR /app/frontend
 RUN npm run build
