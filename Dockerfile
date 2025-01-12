@@ -7,24 +7,29 @@ WORKDIR /app
 # Create backend and frontend directories if they do not exist
 RUN mkdir -p /app/backend /app/frontend
 
-# Copy the backend's package.json
+# Copy backend and frontend dependency files first for caching
 COPY backend/package.json ./backend/
-
-# Copy the frontend's package.json
 COPY frontend/package.json ./frontend/
 
-# Install dependencies for backend and frontend
-RUN cd backend && npm install
-RUN cd frontend && npm install
+# Install backend dependencies
+WORKDIR /app/backend
+RUN npm install
 
-# Copy the rest of the app code
-COPY . .
+# Install frontend dependencies
+WORKDIR /app/frontend
+RUN npm install
 
-# Build the app
-#RUN cd backend && npm run build && cd ../frontend && npm run build
+# Copy the rest of the backend and frontend project files
+WORKDIR /app
+COPY backend ./backend/
+COPY frontend ./frontend/
+
+# Build the frontend
+WORKDIR /app/frontend
+RUN npm run build
 
 # Expose the port
 EXPOSE 3000
 
-# Start both the backend and frontend
+# Start both backend and frontend concurrently
 CMD ["sh", "-c", "npm start --prefix /app/backend & npx serve -s /app/frontend/build -l 3000"]
