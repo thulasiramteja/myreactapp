@@ -4,6 +4,7 @@ const cors = require('cors');
 const { Sequelize } = require('sequelize');
 const promClient = require('prom-client');
 const userRoutes = require('./routes/userRoutes');
+require('dotenv').config(); // Load environment variables from .env
 
 const app = express();
 app.use(cors());
@@ -36,16 +37,25 @@ app.get('/metrics', async (req, res) => {
   res.end(await register.metrics());
 });
 
-// Set up Sequelize connection using environment variables
+// Set up Sequelize connection using environment variables from .env
 const sequelize = new Sequelize({
-  host: process.env.DB_HOST || 'localhost',
+  host: process.env.DB_HOST,
   dialect: 'postgres',
-  username: process.env.DB_USER || 'myappuser',
-  password: process.env.DB_PASSWORD || 'testing',
-  database: process.env.DB_NAME || 'myappdb',
+  username: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT || 5432, // Default to 5432 if not provided
+  logging: false, // Disable Sequelize logging if not needed
 });
 
-sequelize.sync().then(() => console.log('DB synced')).catch((err) => console.error('Failed to sync DB:', err));
+sequelize.authenticate()
+  .then(() => console.log('Database connected successfully'))
+  .catch((err) => console.error('Failed to connect to the database:', err));
 
+// Sync models with the database (or you can choose to use migrations)
+sequelize.sync()
+  .then(() => console.log('Database synced'))
+  .catch((err) => console.error('Failed to sync DB:', err));
+
+// Start the server
 app.listen(5000, () => console.log('Server running on port 5000'));
-	
