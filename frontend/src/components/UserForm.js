@@ -7,7 +7,7 @@ const UserForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('http://localhost:5000/users/add', { name, email });
+    await axios.post('http://myreactapp.railway.internal:5000/users/add', { name, email });
     setName('');
     setEmail('');
   };
