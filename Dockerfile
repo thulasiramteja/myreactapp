@@ -21,7 +21,7 @@ RUN cd frontend && npm install
 COPY . .
 
 # Build the app
-RUN cd backend && npm run build && cd ../frontend && npm run build
+#RUN cd backend && npm run build && cd ../frontend && npm run build
 
 # Expose the port
 EXPOSE 3000
