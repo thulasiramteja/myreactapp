@@ -27,4 +27,4 @@ COPY . .
 EXPOSE 3000
 
 # Start both the backend and frontend
-CMD ["sh", "-c", "cd /app/backend && npm start & cd /app/frontend && npx serve -s build -l 3000"]
+CMD ["sh", "-c", "npm start --prefix /app/backend & npx serve -s /app/frontend/build -l 3000"]
