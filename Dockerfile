@@ -1,3 +1,9 @@
+# Start from the base node image
+FROM node:16
+
+# Set working directory for the application
+WORKDIR /app
+
 # Create backend and frontend directories if they do not exist
 RUN mkdir -p /app/backend /app/frontend
 
@@ -17,6 +23,8 @@ COPY . .
 # Build the app
 RUN cd backend && npm run build && cd ../frontend && npm run build
 
-# Expose the port and start the backend and frontend
+# Expose the port
 EXPOSE 3000
+
+# Start both the backend and frontend
 CMD cd backend && npm start & cd frontend && npx serve -s build -l 3000
