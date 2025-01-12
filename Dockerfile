@@ -25,7 +25,7 @@ COPY backend ./backend/
 COPY frontend ./frontend/
 
 # Copy the .env file from the root of the repository to /app
-COPY .env /app/  # This copies the .env file into the /app directory in the container
+COPY .env /app/.env
 
 # Build the frontend
 WORKDIR /app/frontend
