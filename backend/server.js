@@ -57,7 +57,7 @@ sequelize.sync()
 
 // Get port and deployment URL
 const PORT = process.env.PORT || 3000;
-const PUBLIC_URL = process.env.PUBLIC_URL || 'http://localhost';
+const PUBLIC_URL = process.env.PUBLIC_URL || 'https://myreactapp-production-3536.up.railway.app';
 
 // Start the server
 app.listen(PORT, () => {
