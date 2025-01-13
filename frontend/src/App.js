@@ -7,7 +7,7 @@ const App = () => {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const { data } = await axios.get('https://myreactapp.railway.internal:5000/users/view');
+      const { data } = await axios.get('https://myreactapp-production-3536.up.railway.app:5000/users/view');
       setUsers(data);
     };
     fetchUsers();
