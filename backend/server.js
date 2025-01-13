@@ -55,5 +55,15 @@ sequelize.sync()
   .then(() => console.log('Database synced'))
   .catch((err) => console.error('Failed to sync DB:', err));
 
+// Get port and deployment URL
+const PORT = process.env.PORT || 3000;
+const PUBLIC_URL = process.env.PUBLIC_URL || 'http://localhost';
+
 // Start the server
-app.listen(5000, () => console.log('Server running on port 5000'));
+app.listen(PORT, () => {
+  const url =
+    process.env.RAILWAY_ENVIRONMENT === 'production'
+      ? `https://${process.env.PUBLIC_URL}`
+      : `${PUBLIC_URL}:${PORT}`;
+  console.log(`Server running at ${url}`);
+});
